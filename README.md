@@ -73,3 +73,67 @@ The system integrates offline ML training using the UNSW-NB15 dataset and real-t
 - scaler.joblib
 - pca.joblib
 - random_forest.joblib
+
+
+---
+
+## 🖥 Real-Time Detection Pipeline
+
+1. Capture packets using Scapy  
+2. Convert packets → flows  
+3. Generate 41 features  
+4. Scale → PCA → Predict  
+5. Log malicious flows  
+
+**Example Alert:**
+[ALERT] src=192.168.1.5 dst=8.8.8.8 prob=0.9471
+
+
+---
+
+## Installation
+
+```bash
+pip install scikit-learn pandas numpy joblib scapy
+```
+##  Train & preprocess dataset
+
+```bash
+python preprocess_and_train.py
+```
+
+## Run real-time IDS
+
+```bash
+python live_sniffer.py
+```
+
+## Predict on CSV file
+
+```bash
+python new_predictions.py
+```
+
+## 📈 Model Performance
+
+| Metric    | Score |
+| --------- | ----- |
+| Accuracy  | 93%   |
+| Precision | 96%   |
+| Recall    | 91%   |
+| ROC-AUC   | 0.985 |
+
+
+🚨 Output Files
+
+detected_attacks.csv   → All detected malicious flows
+alerts.log             → Human-readable alert messages
+
+
+🚀 Future Enhancements
+
+Web dashboard for real-time alerts
+Deep learning (Autoencoder / LSTM)
+Kafka-based high-speed streaming
+Payload analysis and NLP-based IDS
+Integration with SIEM platforms
